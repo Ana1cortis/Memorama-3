@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>anma</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4a148c">
+</head>
+<body>
+
+  <!-- Pantalla de bienvenida -->
+  <div id="bienvenida">
+    <h1>¡bienvenid@!</h1>
+    <button id="iniciar-juego">Comenzar</button>
+  </div>
+
+  <!-- Pantalla del juego -->
+  <div id="juego" class="oculto">
+    <h1 id="titulo-juego">🃏 anma</h1>
+
+    <!-- Barra de estado -->
+    <div class="barra-estado">
+      <div>⏱️ <span id="cronometro">00:00</span></div>
+      <div>🎯 <span id="movimientos">0</span> mov.</div>
+    </div>
+
+    <!-- Marcador de jugadores -->
+    <div class="panel" id="panel-marcador">
+      <h2>🏅 Marcador</h2>
+      <div id="marcador" class="marcador"></div>
+    </div>
+
+    <!-- Jugadores -->
+    <div class="panel">
+      <h2>👥 Jugadores</h2>
+      <p class="nota">Mínimo 1, máximo 6.</p>
+      <input type="range" id="cantidad-jugadores" min="1" max="6" value="2">
+      <p class="nota">Jugadores: <b id="valor-jugadores">2</b></p>
+      <div id="nombres-jugadores" class="nombres"></div>
+      <button id="aplicar-jugadores">Aplicar jugadores</button>
+    </div>
+
+    <!-- Niveles -->
+    <div class="panel">
+      <h2>🎚️ Nivel de dificultad</h2>
+      <div class="niveles">
+        <button class="nivel" data-nivel="facil">Fácil</button>
+        <button class="nivel" data-nivel="medio">Medio</button>
+        <button class="nivel" data-nivel="dificil">Difícil</button>
+      </div>
+      <p class="nota" id="texto-nivel">Fácil: 4 parejas · 8 cartas</p>
+    </div>
+
+    <!-- Cantidad de parejas -->
+    <div class="panel">
+      <h2>🔢 Cantidad de parejas</h2>
+      <p class="nota">Mínimo 4, máximo 50.</p>
+      <input type="range" id="cantidad-parejas" min="4" max="50" value="8">
+      <p class="nota">Parejas: <b id="valor-parejas">8</b> · Cartas: <b id="valor-cartas">16</b></p>
+    </div>
+
+    <!-- Reverso -->
+    <div class="panel">
+      <h2>🃏 ¿Cómo quieres el reverso?</h2>
+      <select id="estilo-reverso">
+        <option value="color">🎨 Color sólido</option>
+        <option value="imagen">🖼️ Imagen (link)</option>
+        <option value="textura">🧱 Textura</option>
+      </select>
+
+      <div id="opcion-imagen" class="oculto">
+        <label>Link de la imagen:</label>
+        <input type="text" id="link-imagen" placeholder="https://...">
+        <label>Color de fondo:</label>
+        <input type="color" id="color-fondo-imagen" value="#4a148c">
+      </div>
+
+      <div id="opcion-color">
+        <label>Fondo de la carta:</label>
+        <input type="color" id="color-fondo" value="#4a148c">
+        <label>Al voltear:</label>
+        <input type="color" id="color-volteada" value="#e0aaff">
+        <label>Color de contenido:</label>
+        <input type="color" id="color-texto" value="#ffffff">
+        <label>Pareja encontrada:</label>
+        <input type="color" id="color-encontrada" value="#2d6a4f">
+      </div>
+
+      <div id="opcion-textura" class="oculto">
+        <label>Textura:</label>
+        <select id="textura">
+          <option value="rayas">Rayas</option>
+          <option value="puntos">Puntos</option>
+          <option value="cuadros">Cuadros</option>
+          <option value="ondas">Ondas</option>
+        </select>
+        <label>Color:</label>
+        <input type="color" id="color-textura" value="#4a148c">
+      </div>
+
+      <button id="guardar-estilo">Guardar estilo</button>
+    </div>
+
+    <!-- Caras -->
+    <div class="panel">
+      <h2>🎴 ¿Qué quieres en las caras?</h2>
+      <select id="tipo-caras">
+        <option value="emojis">😀 Emojis</option>
+        <option value="imagenes">🖼️ Imágenes (links)</option>
+      </select>
+
+      <div id="opcion-emojis">
+        <p class="nota">Emojis de animales por defecto.</p>
+      </div>
+
+      <div id="opcion-links" class="oculto">
+        <p class="nota">Un link por pareja. 4 parejas = 4 links.</p>
+        <textarea id="links-caras" rows="4" placeholder="https://imagen1.png&#10;https://imagen2.png&#10;https://imagen3.png&#10;https://imagen4.png"></textarea>
+      </div>
+
+      <button id="guardar-caras">Guardar caras</button>
+    </div>
+
+    <!-- Aviso de turno, centrado -->
+    <div id="aviso-turno" class="aviso-turno">
+      Turno de <b id="nombre-turno">Jugador 1</b>
+    </div>
+
+    <div id="tablero" class="tablero"></div>
+    <button id="reiniciar">Reiniciar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
